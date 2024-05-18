@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Muntaner station in Barcelona?",
+            "choices": {
+                "A": "It's the biggest train station in Barcelona",
+                "B": "It's located in the city center",
+                "C": "It's a very old station, built over 100 years ago",
+                "D": "It's only for high-speed trains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near the Muntaner station?",
+            "choices": {
+                "A": "The famous Camp Nou football stadium",
+                "B": "The Palau Robert gardens",
+                "C": "The Barceloneta beach",
+                "D": "The Tibidabo amusement park"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "Which famous street is close to the Muntaner station?",
+            "choices": {
+                "A": "La Rambla",
+                "B": "Passeig de Gracia",
+                "C": "Avinguda Diagonal",
+                "D": "Carrer de Muntaner"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What is Muntaner station used for today?",
+            "choices": {
+                "A": "Only for tourist trains",
+                "B": "Only for local trains",
+                "C": "For both local and regional trains",
+                "D": "It's closed and not used anymore"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Why is the area around Muntaner station popular?",
+            "choices": {
+                "A": "Because it's close to the airport",
+                "B": "Because it's near the city center and has many shops and restaurants",
+                "C": "Because it's near the sea",
+                "D": "Because it's a quiet area"
+            },
+            "correct": "B"
+        }
+    ]
+}

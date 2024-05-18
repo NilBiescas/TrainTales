@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous mountain you can see from the Sant Quirze del Vall\u00e8s station?",
+            "choices": {
+                "A": "Montju\u00efc",
+                "B": "Tibidabo",
+                "C": "Montserrat",
+                "D": "Collserola"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is special about the area surrounding Sant Quirze del Vall\u00e8s station?",
+            "choices": {
+                "A": "It's a beach town",
+                "B": "It's a big city",
+                "C": "It's surrounded by woods",
+                "D": "It's near a desert"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What kind of trees are commonly found near the Sant Quirze del Vall\u00e8s station?",
+            "choices": {
+                "A": "Palm trees",
+                "B": "Oak trees",
+                "C": "Pine trees",
+                "D": "Maple trees"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is a fun thing to do near the Sant Quirze del Vall\u00e8s station?",
+            "choices": {
+                "A": "Go to the beach",
+                "B": "Visit a museum",
+                "C": "Go hiking in the woods",
+                "D": "Play video games"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is the name of the region where the Sant Quirze del Vall\u00e8s station is located?",
+            "choices": {
+                "A": "Valencia",
+                "B": "Catalonia",
+                "C": "Andalusia",
+                "D": "Galicia"
+            },
+            "correct": "B"
+        }
+    ]
+}

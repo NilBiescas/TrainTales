@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous square right in front of Barcelona Pla\u00e7a Catalunya station?",
+            "choices": {
+                "A": "Pla\u00e7a Espa\u00f1a",
+                "B": "Pla\u00e7a Catalunya",
+                "C": "La Rambla",
+                "D": "Park G\u00fcell"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is special about the architecture of Barcelona Pla\u00e7a Catalunya station?",
+            "choices": {
+                "A": "It was built in the 18th century",
+                "B": "It has a big clock tower",
+                "C": "It has a mix of modern and old styles",
+                "D": "It is the biggest station in Europe"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Which famous street is just a short walk from Barcelona Pla\u00e7a Catalunya station?",
+            "choices": {
+                "A": "Avinguda Diagonal",
+                "B": "Gran Vía de les Corts Catalanes",
+                "C": "La Rambla",
+                "D": "Carrer Ferran"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is one of the most popular things to do near Barcelona Pla\u00e7a Catalunya station?",
+            "choices": {
+                "A": "Visit the beach",
+                "B": "Go shopping",
+                "C": "Take a cable car ride",
+                "D": "Walk in the park"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the name of the famous department store you can find near Barcelona Pla\u00e7a Catalunya station?",
+            "choices": {
+                "A": "El Corte Ingl\u00e9s",
+                "B": "Macy's",
+                "C": "Galeries Lafayette",
+                "D": "Harrods"
+            },
+            "correct": "A"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the street where Can Feu-Gr\u00e0cia Sabadell station is located?",
+            "choices": {
+                "A": "Carrer de les Monges",
+                "B": "Carrer de Bilbao",
+                "C": "Carrer de Can Feu",
+                "D": "Carrer de Gr\u00e0cia"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is special about the architecture of Can Feu-Gr\u00e0cia Sabadell station?",
+            "choices": {
+                "A": "It's made entirely of glass",
+                "B": "It's built underground",
+                "C": "It's a mix of modern and ancient styles",
+                "D": "It's shaped like a train"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near Can Feu-Gr\u00e0cia Sabadell station?",
+            "choices": {
+                "A": "A big park",
+                "B": "A museum",
+                "C": "A shopping center",
+                "D": "A river"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "How many platforms does Can Feu-Gr\u00e0cia Sabadell station have?",
+            "choices": {
+                "A": "2",
+                "B": "3",
+                "C": "4",
+                "D": "5"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What type of trains stop at Can Feu-Gr\u00e0cia Sabadell station?",
+            "choices": {
+                "A": "High-speed trains",
+                "B": "Regional trains",
+                "C": "Subway trains",
+                "D": "Tourist trains"
+            },
+            "correct": "B"
+        }
+    ]
+}

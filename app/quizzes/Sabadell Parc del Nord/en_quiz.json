@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous mountain that you can see from Sabadell Parc del Nord station?",
+            "choices": {
+                "A": "Montserrat",
+                "B": "Pyrenees",
+                "C": "Tibidabo",
+                "D": "Collserola"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "What is special about the train tracks at Sabadell Parc del Nord station?",
+            "choices": {
+                "A": "They are the longest in Spain",
+                "B": "They are the oldest in Barcelona",
+                "C": "They are narrow-gauge tracks",
+                "D": "They are only used for freight trains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near Sabadell Parc del Nord station?",
+            "choices": {
+                "A": "A big amusement park",
+                "B": "A beautiful lake",
+                "C": "A historic castle",
+                "D": "A shopping mall"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "Sabadell Parc del Nord station is located in which city?",
+            "choices": {
+                "A": "Sabadell",
+                "B": "Barcelona",
+                "C": "Girona",
+                "D": "Tarragona"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What kind of trains stop at Sabadell Parc del Nord station?",
+            "choices": {
+                "A": "Only high-speed trains",
+                "B": "Only commuter trains",
+                "C": "Regional and commuter trains",
+                "D": "International trains"
+            },
+            "correct": "C"
+        }
+    ]
+}

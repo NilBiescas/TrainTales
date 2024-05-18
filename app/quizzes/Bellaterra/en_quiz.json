@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the mountain range visible from the Bellaterra station?",
+            "choices": {
+                "A": "Pyrenees",
+                "B": "Serra de Collserola",
+                "C": "Picos de Europa",
+                "D": "Cantabrian Mountains"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is special about the rails at Bellaterra station?",
+            "choices": {
+                "A": "They are the longest in Spain",
+                "B": "They are made of copper",
+                "C": "They have a special non-slip surface",
+                "D": "They are electrified"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What is the name of the nearby university that many students travel to from Bellaterra station?",
+            "choices": {
+                "A": "University of Barcelona",
+                "B": "Autonomous University of Barcelona",
+                "C": "Pompeu Fabra University",
+                "D": "Universitat Polit\u00e8cnica de Catalunya"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the main attraction near Bellaterra station?",
+            "choices": {
+                "A": "A theme park",
+                "B": "A castle",
+                "C": "A zoo",
+                "D": "The Serra de Collserola Natural Park"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "How often do trains run from Bellaterra station?",
+            "choices": {
+                "A": "Every 30 minutes",
+                "B": "Every 10 minutes",
+                "C": "Every hour",
+                "D": "Every 5 minutes"
+            },
+            "correct": "B"
+        }
+    ]
+}

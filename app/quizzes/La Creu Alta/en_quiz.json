@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the mountain that you can see from the La Creu Alta station?",
+            "choices": {
+                "A": "Montju\u00efc",
+                "B": "Tibidabo",
+                "C": "Montserrat",
+                "D": "Collserola"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What is special about the railway line where La Creu Alta station is located?",
+            "choices": {
+                "A": "It's a high-speed rail line",
+                "B": "It's a scenic tourist train",
+                "C": "It's the oldest rail line in Spain",
+                "D": "It connects to the airport"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near La Creu Alta station in Barcelona?",
+            "choices": {
+                "A": "A big shopping mall",
+                "B": "A beautiful park",
+                "C": "A famous football stadium",
+                "D": "A lovely beach"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "How many platforms does La Creu Alta station have?",
+            "choices": {
+                "A": "2",
+                "B": "3",
+                "C": "4",
+                "D": "5"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is close to La Creu Alta station and is popular with kids?",
+            "choices": {
+                "A": "An amusement park",
+                "B": "A museum of science",
+                "C": "A zoo",
+                "D": "A water park"
+            },
+            "correct": "A"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous mountain you can see from La Floresta station?",
+            "choices": {
+                "A": "Montserrat",
+                "B": "Pyrenees",
+                "C": "Aneto",
+                "D": "Tibidabo"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "What is special about the architecture of La Floresta station?",
+            "choices": {
+                "A": "It's made entirely of glass",
+                "B": "It's built underground",
+                "C": "It's shaped like a castle",
+                "D": "It's designed in a modernist style"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "Which famous Catalan park is near La Floresta station?",
+            "choices": {
+                "A": "Park G\u00fcell",
+                "B": "Parc de la Ciutadella",
+                "C": "Collserola Natural Park",
+                "D": "Parc de Joan Miro"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is the name of the famous street that La Floresta station is located on?",
+            "choices": {
+                "A": "Carrer de La Floresta",
+                "B": "Carrer de Barcelona",
+                "C": "Carrer de Sant Pere",
+                "D": "Carrer de Valles"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "What is near La Floresta station that kids love?",
+            "choices": {
+                "A": "A big library",
+                "B": "A movie theater",
+                "C": "An amusement park",
+                "D": "A big playground"
+            },
+            "correct": "D"
+        }
+    ]
+}

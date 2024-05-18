@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the mountain you can see from Les Planes station?",
+            "choices": {
+                "A": "Montserrat",
+                "B": "Pyrenees",
+                "C": "Aneto",
+                "D": "Tibidabo"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "What is special about the railway line that Les Planes station is on?",
+            "choices": {
+                "A": "It's the fastest train in Spain",
+                "B": "It's the oldest train in Spain",
+                "C": "It's a scenic route to the Pyrenees",
+                "D": "It's a commuter train to Barcelona city"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you see near Les Planes station that is famous for its beautiful gardens?",
+            "choices": {
+                "A": "Montserrat Monastery",
+                "B": "Park G\u00fcell",
+                "C": "Casa Batll\u00f3",
+                "D": "Laberint d'Horta"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What kind of train typically stops at Les Planes station?",
+            "choices": {
+                "A": "High-speed train to Madrid",
+                "B": "Regional train to the Pyrenees",
+                "C": "Suburban train to Barcelona city",
+                "D": "Tourist train to Montserrat"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the name of the neighborhood where Les Planes station is located?",
+            "choices": {
+                "A": "Sants-Montju\u00efc",
+                "B": "Les Corts",
+                "C": "Sarri\u00e0-Sant Gervasi",
+                "D": "Horta-Guinard\u00f3"
+            },
+            "correct": "C"
+        }
+    ]
+}

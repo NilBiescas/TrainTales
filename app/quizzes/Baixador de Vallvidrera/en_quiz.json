@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Baixador de Vallvidrera station?",
+            "choices": {
+                "A": "It's the biggest station in Barcelona",
+                "B": "It's the oldest station in Barcelona",
+                "C": "It's located in a valley surrounded by mountains",
+                "D": "It's an underground station"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Which mountain range can you see from the Baixador de Vallvidrera station?",
+            "choices": {
+                "A": "The Pyrenees",
+                "B": "The Serra de Collserola",
+                "C": "The Cantabrian Mountains",
+                "D": "The Andes"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is nearby the Baixador de Vallvidrera station?",
+            "choices": {
+                "A": "The beach",
+                "B": "The Tibidabo Amusement Park",
+                "C": "The city center",
+                "D": "The zoo"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What kind of trains stop at the Baixador de Vallvidrera station?",
+            "choices": {
+                "A": "High-speed trains",
+                "B": "Freight trains",
+                "C": "Commuter trains",
+                "D": "Tourist trains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "How do people often travel from the Baixador de Vallvidrera station?",
+            "choices": {
+                "A": "By bike",
+                "B": "On foot",
+                "C": "By bus",
+                "D": "By taxi"
+            },
+            "correct": "B"
+        }
+    ]
+}

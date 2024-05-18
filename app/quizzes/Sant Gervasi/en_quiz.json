@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous street near Sant Gervasi station where you can find many shops and cafes?",
+            "choices": {
+                "A": "La Rambla",
+                "B": "Avinguda Diagonal",
+                "C": "Passeig de Gracia",
+                "D": "Carrer de Girona"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is special about the buildings near Sant Gervasi station?",
+            "choices": {
+                "A": "They are all very old",
+                "B": "They are all very tall",
+                "C": "They are all modern and new",
+                "D": "They are all designed by Antoni Gaud\u00ed"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What is the name of the famous park near Sant Gervasi station where you can play and have fun?",
+            "choices": {
+                "A": "Park G\u00fcell",
+                "B": "Parc de la Ciutadella",
+                "C": "Tur\u00f3 Park",
+                "D": "Montju\u00efc"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find inside the Sant Gervasi station?",
+            "choices": {
+                "A": "A big playground",
+                "B": "A museum about trains",
+                "C": "A caf\u00e9 and some shops",
+                "D": "A big library"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "How do people usually travel to and from Sant Gervasi station?",
+            "choices": {
+                "A": "By bike",
+                "B": "By car",
+                "C": "On foot",
+                "D": "By metro or bus"
+            },
+            "correct": "D"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous avenue near the Sant Cugat del Vall\u00e8s train station?",
+            "choices": {
+                "A": "Rambla de Catalunya",
+                "B": "Passeig de Sant Joan",
+                "C": "Avinguda de la Generalitat",
+                "D": "Rambla del Celler"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is special about the Roman church near Sant Cugat train station?",
+            "choices": {
+                "A": "It's the biggest church in Barcelona",
+                "B": "It's the oldest church in Barcelona",
+                "C": "It has a unique bell tower",
+                "D": "It was built in the 9th century"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What can you find in the Valley of Sant Cugat, near the train station?",
+            "choices": {
+                "A": "A big lake",
+                "B": "A big park with a castle",
+                "C": "A forest with many hiking trails",
+                "D": "A beautiful beach"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is the name of the train line that stops at Sant Cugat del Vall\u00e8s station?",
+            "choices": {
+                "A": "R1",
+                "B": "R4",
+                "C": "R7",
+                "D": "S1"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "How many platforms does Sant Cugat del Vall\u00e8s train station have?",
+            "choices": {
+                "A": "2",
+                "B": "3",
+                "C": "4",
+                "D": "5"
+            },
+            "correct": "C"
+        }
+    ]
+}

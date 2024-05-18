@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous street where the Proven\u00e7a station is located?",
+            "choices": {
+                "A": "La Rambla",
+                "B": "Passeig de Gracia",
+                "C": "Diagonal Avenue",
+                "D": "Carrer de Proven\u00e7a"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What is special about the architecture of the Proven\u00e7a station building?",
+            "choices": {
+                "A": "It's a very old building",
+                "B": "It's a very modern building",
+                "C": "It's a mixture of old and modern styles",
+                "D": "It's a copy of a famous building in Paris"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Which famous Catalan architect designed the Proven\u00e7a station?",
+            "choices": {
+                "A": "Antoni Gaud\u00ed",
+                "B": "Llu\u00eds Dom\u00e8nech i Montaner",
+                "C": "Josep Puig i Cadafalch",
+                "D": "Enric Sagnier"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is close to the Proven\u00e7a station and is a popular place for tourists?",
+            "choices": {
+                "A": "Barceloneta Beach",
+                "B": "Casa Batll\u00f3",
+                "C": "Park G\u00fcell",
+                "D": "La Boqueria Market"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "Why is the Proven\u00e7a station an important transportation hub?",
+            "choices": {
+                "A": "It's a connection point for many bus lines",
+                "B": "It's a central location for bike rentals",
+                "C": "It's a main stop for regional and commuter trains",
+                "D": "It's a popular taxi stand"
+            },
+            "correct": "C"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the city where Sabadell Pla\u00e7a Major station is located?",
+            "choices": {
+                "A": "Madrid",
+                "B": "Barcelona",
+                "C": "Valencia",
+                "D": "Seville"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is special about the trains that stop at Sabadell Pla\u00e7a Major station?",
+            "choices": {
+                "A": "They are super fast",
+                "B": "They go to the beach",
+                "C": "They are commuter trains",
+                "D": "They have a restaurant car"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near Sabadell Pla\u00e7a Major station?",
+            "choices": {
+                "A": "A big park",
+                "B": "A castle",
+                "C": "A marketplace",
+                "D": "A museum"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "How do people usually get to Sabadell Pla\u00e7a Major station?",
+            "choices": {
+                "A": "By taxi",
+                "B": "By bus",
+                "C": "On foot or by bike",
+                "D": "By airplane"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is a popular thing to do in Sabadell, the city where the station is located?",
+            "choices": {
+                "A": "Visit a theme park",
+                "B": "Go hiking",
+                "C": "Explore the historic center",
+                "D": "Go to the coast"
+            },
+            "correct": "C"
+        }
+    ]
+}

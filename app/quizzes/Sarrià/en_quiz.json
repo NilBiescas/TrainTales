@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Sarri\u00e0 station in Barcelona?",
+            "choices": {
+                "A": "It's the biggest station in Barcelona",
+                "B": "It's the oldest station in Barcelona",
+                "C": "It's the last station on the FGC line",
+                "D": "It's a famous tourist attraction"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near the Sarri\u00e0 station?",
+            "choices": {
+                "A": "The famous Camp Nou stadium",
+                "B": "A beautiful beach",
+                "C": "The hill of Tibidabo",
+                "D": "A big shopping mall"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is the name of the train line that stops at Sarri\u00e0 station?",
+            "choices": {
+                "A": "R1",
+                "B": "R2",
+                "C": "R4",
+                "D": "L6"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What kind of trains usually stop at Sarri\u00e0 station?",
+            "choices": {
+                "A": "High-speed trains",
+                "B": "Long-distance trains",
+                "C": "Commuter trains",
+                "D": "Tourist trains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Why is Sarri\u00e0 station important for the people of Barcelona?",
+            "choices": {
+                "A": "It's a busy airport",
+                "B": "It's a big bus station",
+                "C": "It connects people to nearby towns",
+                "D": "It's a famous museum"
+            },
+            "correct": "C"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the mountain you can see from La Bonanova station?",
+            "choices": {
+                "A": "Mount Everest",
+                "B": "Tibidabo",
+                "C": "Mount Olympus",
+                "D": "The Eiffel Tower"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is special about the tunnel at La Bonanova station?",
+            "choices": {
+                "A": "It's the longest tunnel in Spain",
+                "B": "It's the oldest tunnel in Barcelona",
+                "C": "It's a particularly steep tunnel",
+                "D": "It's decorated with bright murals"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is near La Bonanova station that kids love?",
+            "choices": {
+                "A": "The Barcelona Zoo",
+                "B": "The Tibidabo Amusement Park",
+                "C": "The Barcelona Aquarium",
+                "D": "The Museum of Natural History"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the name of the neighborhood where La Bonanova station is located?",
+            "choices": {
+                "A": "Gothic Quarter",
+                "B": "Eixample",
+                "C": "Sant Pere de Ribes",
+                "D": "Sarria-Sant Gervasi"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "How many platforms does La Bonanova station have?",
+            "choices": {
+                "A": "2",
+                "B": "3",
+                "C": "4",
+                "D": "6"
+            },
+            "correct": "A"
+        }
+    ]
+}

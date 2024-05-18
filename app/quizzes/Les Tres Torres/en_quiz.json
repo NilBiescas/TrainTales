@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous stadium near Les Tres Torres station?",
+            "choices": {
+                "A": "Camp Nou",
+                "B": "Estadi Ol\u00edmpic Llu\u00eds Companys",
+                "C": "Palau Sant Jordi",
+                "D": "Estadi de Sarri\u00e0"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "What is special about the Les Tres Torres station building?",
+            "choices": {
+                "A": "It's the oldest station in Barcelona",
+                "B": "It's a modern building with a glass roof",
+                "C": "It's located underground",
+                "D": "It was built in 1929 for the International Exposition"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What can you see nearby Les Tres Torres station?",
+            "choices": {
+                "A": "The Mediterranean Sea",
+                "B": "The Tibidabo Amusement Park",
+                "C": "The Palau Reial de Pedralbes",
+                "D": "The Montserrat mountains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Why did many people travel to Les Tres Torres station in the past?",
+            "choices": {
+                "A": "To visit the nearby beach",
+                "B": "To attend football matches at Camp Nou",
+                "C": "To visit the International Exposition",
+                "D": "To go hiking in the nearby mountains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is near Les Tres Torres station that kids might enjoy?",
+            "choices": {
+                "A": "A big park with a lake",
+                "B": "A bike rental shop",
+                "C": "The Barcelona Zoo",
+                "D": "The CosmoCaixa science museum"
+            },
+            "correct": "D"
+        }
+    ]
+}

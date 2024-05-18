@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Peu del Funicular station in Barcelona?",
+            "choices": {
+                "A": "It's the oldest station in Barcelona",
+                "B": "It's the highest station in Barcelona",
+                "C": "It connects to a funicular railway",
+                "D": "It's underwater"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is nearby the Peu del Funicular station?",
+            "choices": {
+                "A": "The beach",
+                "B": "The mountains",
+                "C": "The famous La Rambla street",
+                "D": "The Barcelona Zoo"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you see from the top of the funicular railway that starts at Peu del Funicular?",
+            "choices": {
+                "A": "The Pyrenees mountains",
+                "B": "The whole city of Barcelona",
+                "C": "The Mediterranean Sea",
+                "D": "The Eiffel Tower"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the name of the hill that the funicular railway takes you up?",
+            "choices": {
+                "A": "Montju\u00efc Hill",
+                "B": "Mount Everest",
+                "C": "The Eiffel Hill",
+                "D": "The Fun Hill"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "Why is Montju\u00efc Hill famous?",
+            "choices": {
+                "A": "Because of its beautiful gardens",
+                "B": "Because of its famous castle",
+                "C": "Because it's the highest point in Barcelona",
+                "D": "Because of its magical powers"
+            },
+            "correct": "B"
+        }
+    ]
+}

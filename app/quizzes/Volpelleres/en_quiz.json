@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Volpelleres station in Barcelona?",
+            "choices": {
+                "A": "It's the biggest station in Barcelona",
+                "B": "It's a very old station",
+                "C": "It's a station that only goes to the airport",
+                "D": "It's a station that connects to many neighborhoods"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What can you find near Volpelleres station?",
+            "choices": {
+                "A": "The beach",
+                "B": "A big park",
+                "C": "A shopping mall",
+                "D": "The city center"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "Volpelleres station is in the district of...",
+            "choices": {
+                "A": "Sant Marti",
+                "B": "Eixample",
+                "C": "Gracia",
+                "D": "Sants-Montjuic"
+            },
+            "correct": "A"
+        },
+        {
+            "question": "What kind of trains stop at Volpelleres station?",
+            "choices": {
+                "A": "Only long-distance trains",
+                "B": "Only local trains",
+                "C": "Both local and long-distance trains",
+                "D": "Only tourist trains"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the region where Volpelleres station is located?",
+            "choices": {
+                "A": "Catalonia",
+                "B": "Andalusia",
+                "C": "Valencia",
+                "D": "Madrid"
+            },
+            "correct": "A"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Universitat Aut\u00f2noma station in Barcelona?",
+            "choices": {
+                "A": "It's the biggest station in Barcelona",
+                "B": "It's a very old station, built over 100 years ago",
+                "C": "It's located inside a university campus",
+                "D": "It's the only station in Barcelona with a big park nearby"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you see near the Universitat Aut\u00f2noma station?",
+            "choices": {
+                "A": "The famous Sagrada Fam\u00edlia",
+                "B": "A big beach with palm trees",
+                "C": "The Bellaterra mountain range",
+                "D": "A beautiful lake with swans"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Why is the Universitat Aut\u00f2noma station named like that?",
+            "choices": {
+                "A": "Because it's near a big auto shop",
+                "B": "Because it's the last station on the line",
+                "C": "Because it's located inside the Autonomous University of Barcelona",
+                "D": "Because it's a very autonomous station"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is the university near the station famous for?",
+            "choices": {
+                "A": "Its beautiful gardens",
+                "B": "Its very old buildings",
+                "C": "Its science and technology programs",
+                "D": "Its huge library"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you do if you get off at the Universitat Aut\u00f2noma station?",
+            "choices": {
+                "A": "Visit the city center",
+                "B": "Go hiking in the mountains",
+                "C": "Attend classes at the university",
+                "D": "Go to the beach"
+            },
+            "correct": "C"
+        }
+    ]
+}

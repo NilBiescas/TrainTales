@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Valldoreix station?",
+            "choices": {
+                "A": "It's the largest station in Barcelona",
+                "B": "It's the oldest station in Catalonia",
+                "C": "It's a quiet station in a residential area",
+                "D": "It's only for international trains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near the Valldoreix station?",
+            "choices": {
+                "A": "The Camp Nou stadium",
+                "B": "The Barceloneta Beach",
+                "C": "The S\u00f2ria Park and the stream of Valldoreix",
+                "D": "The Sagrada Fam\u00edlia"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What kind of trains usually stop at Valldoreix station?",
+            "choices": {
+                "A": "High-speed trains to Madrid",
+                "B": "International trains to France",
+                "C": "Local and regional trains to nearby towns",
+                "D": "Tourist trains to the mountains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Why is Valldoreix station important for the locals?",
+            "choices": {
+                "A": "Because it's a main hub for tourists",
+                "B": "Because it connects to the airport",
+                "C": "Because it's close to many schools and homes",
+                "D": "Because it's a historic landmark"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What's a fun fact about the neighborhood around Valldoreix station?",
+            "choices": {
+                "A": "It's home to many famous football players",
+                "B": "It's known for its delicious seafood restaurants",
+                "C": "It's a quiet area with many gardens and parks",
+                "D": "It's a popular area for skateboarders"
+            },
+            "correct": "C"
+        }
+    ]
+}

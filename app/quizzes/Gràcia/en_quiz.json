@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the famous market located near Gr\u00e0cia station?",
+            "choices": {
+                "A": "La Boqueria Market",
+                "B": "Mercat de l'Abaceria",
+                "C": "Mercat de Sant Antoni",
+                "D": "Mercat de la Llibertat"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is special about the architecture of the houses near Gr\u00e0cia station?",
+            "choices": {
+                "A": "They are very tall",
+                "B": "They are very colorful",
+                "C": "They are very old",
+                "D": "They are all the same color"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is the name of the popular festival held in Gr\u00e0cia every August?",
+            "choices": {
+                "A": "La Diada de Sant Jordi",
+                "B": "La Festa Major de Gr\u00e0cia",
+                "C": "La Festa de la Merc\u00e8",
+                "D": "La Festa de la Diada"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What is Gr\u00e0cia station located in?",
+            "choices": {
+                "A": "Barcelona city center",
+                "B": "The Pyrenees mountains",
+                "C": "The coast of Barcelona",
+                "D": "The neighborhood of Gr\u00e0cia"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "How many exits does Gr\u00e0cia station have?",
+            "choices": {
+                "A": "2 exits",
+                "B": "3 exits",
+                "C": "4 exits",
+                "D": "5 exits"
+            },
+            "correct": "C"
+        }
+    ]
+}

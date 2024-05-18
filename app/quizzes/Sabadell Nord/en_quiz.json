@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Sabadell Nord station?",
+            "choices": {
+                "A": "It's the biggest station in Barcelona",
+                "B": "It's the oldest station in Barcelona",
+                "C": "It's a high-speed train station",
+                "D": "It's a station with a beautiful park next to it"
+            },
+            "correct": "D"
+        },
+        {
+            "question": "What can you find near Sabadell Nord station?",
+            "choices": {
+                "A": "A big amusement park",
+                "B": "A beautiful beach",
+                "C": "The Parc de Catalunya, a big park",
+                "D": "A castle"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "Why do many people go to Sabadell Nord station?",
+            "choices": {
+                "A": "To visit the station's museum",
+                "B": "To take a train to the mountains",
+                "C": "To go to the nearby city of Sabadell",
+                "D": "To visit the beach"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is near the Sabadell Nord station that kids might enjoy?",
+            "choices": {
+                "A": "A toy store",
+                "B": "An ice cream shop",
+                "C": "A big playground",
+                "D": "A bookstore"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What is special about the area around Sabadell Nord station?",
+            "choices": {
+                "A": "It's very noisy",
+                "B": "It's very crowded",
+                "C": "It's very green, with many trees",
+                "D": "It's very dark at night"
+            },
+            "correct": "C"
+        }
+    ]
+}

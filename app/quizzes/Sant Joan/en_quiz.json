@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "question": "What is special about the Sant Joan station in Barcelona?",
+            "choices": {
+                "A": "It's the biggest station in Spain",
+                "B": "It's a high-speed train station",
+                "C": "It's located near the beach",
+                "D": "It's a historic station built in 1920"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "What famous landmark is close to the Sant Joan station?",
+            "choices": {
+                "A": "La Sagrada Familia",
+                "B": "Park G\u00fcell",
+                "C": "Camp Nou stadium",
+                "D": "Barcelona Cathedral"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What kind of trains stop at the Sant Joan station?",
+            "choices": {
+                "A": "Only local trains",
+                "B": "Only high-speed trains",
+                "C": "Both local and high-speed trains",
+                "D": "Only tourist trains"
+            },
+            "correct": "C"
+        },
+        {
+            "question": "What can you find near the Sant Joan station in Barcelona?",
+            "choices": {
+                "A": "A big park with a lake",
+                "B": "A large shopping center",
+                "C": "A historic castle",
+                "D": "A museum of trains"
+            },
+            "correct": "B"
+        },
+        {
+            "question": "Why is the Sant Joan station important for travelers?",
+            "choices": {
+                "A": "It's the main station in Barcelona",
+                "B": "It's the closest station to the airport",
+                "C": "It connects to many cities in Spain",
+                "D": "It has a big waiting room"
+            },
+            "correct": "C"
+        }
+    ]
+}
