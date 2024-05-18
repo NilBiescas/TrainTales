@@ -2,37 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Google Map with Markers</title>
+    <title>Location Request</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
-            width: 100%;
             height: 500px;
+            width: 100%;
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
-</head>
-<body>
-    <h1>My Embedded Map with Markers</h1>
-    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        function initMap() {
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 41.387, lng: 2.169 },
-                zoom: 12
-            });
+        var myIcon = L.icon({
+            iconUrl: 'https://static.thenounproject.com/png/1669733-200.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32]
+        });
 
-            const markers = {{ markers | tojson }};
+        var iconMarker;
 
-            markers.forEach(marker => {
-                new google.maps.Marker({
-                    position: { lat: marker.lat, lng: marker.lng },
-                    map: map
-                });
-            });
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showMap);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         }
 
-        window.onload = initMap;
+        function showMap(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Initialize the map
+            const map = L.map('map').setView([latitude, longitude], 13);
+
+            // Add a tile layer to the map
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Add a marker to the map at the user's location
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('You are here!')
+                .openPopup();
+
+            iconMarker = L.marker([41.3851, 2.1734], {icon: myIcon}).addTo(map)
+                .bindPopup('Barcelona')
+                .openPopup();
+
+            // Fetch station data from JSON file
+            fetch('/static/stations_s2.json')
+                .then(response => response.json())
+                .then(stationData => {
+                    // Add markers for each station in the JSON data
+                    for (const station in stationData.stations) {
+                        if (stationData.stations.hasOwnProperty(station)) {
+                            const stationInfo = stationData.stations[station];
+                            L.marker([stationInfo.lat, stationInfo.lon]).addTo(map)
+                                .bindPopup(`${station} (Line: ${stationInfo.line})`)
+                                .openPopup();
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching station data:', error);
+                });
+
+            // Send location to the server
+            fetch('/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    latitude: latitude,
+                    longitude: longitude
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            // Testing: Move the icon a little bit every second
+            setInterval(updateIconPosition, 100000);
+        }
+
+        function updateIconPosition() {
+            // Generate random small changes in latitude and longitude for testing
+            const deltaLat = Math.random() * 0.01 - 0.005;
+            const deltaLon = Math.random() * 0.01 - 0.005;
+
+            // Get the current icon position
+            const currentLatLng = iconMarker.getLatLng();
+
+            // Calculate the new position
+            const newLatLng = {
+                lat: currentLatLng.lat + deltaLat,
+                lng: currentLatLng.lng + deltaLon
+            };
+
+            // Update the icon position
+            iconMarker.setLatLng(newLatLng);
+
+            // Uncomment the line below to open the popup at the new position (optional)
+            // iconMarker.openPopup();
+        }
     </script>
+</head>
+<body onload="getLocation()">
+    <h1>Request User Location</h1>
+    <div id="map"></div>
 </body>
 </html>

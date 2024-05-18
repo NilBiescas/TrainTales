@@ -1,14 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    markers = [
-        {"lat": 41.40338, "lng": 2.17403},
-        {"lat": 41.38506, "lng": 2.17340},
-    ]
-    return render_template('index.html', markers=markers)
+    return render_template('index.html')
+
+@app.route('/location', methods=['POST'])
+def location():
+    data = request.json
+    latitude = data.get('latitude')
+    longitude = data.get('longitude')
+    return jsonify({'status': 'success', 'latitude': latitude, 'longitude': longitude})
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True)
