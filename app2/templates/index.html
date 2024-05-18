@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kids Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial Rounded MT Bold', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        .question-box {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+        }
+        .question {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .answer {
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+        }
+        .answer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+        }
+        .correct {
+            background-color: #4CAF50; /* Green background for correct answers */
+        }
+        .incorrect {
+            background-color: #f44336; /* Red background for incorrect answers */
+        }
+    </style>
+</head>
+<body>
+    <div class="question-box">
+        <div class="question">What is the capital of France?</div>
+        <div id="A" class="answer" onclick="sendAnswer('A')">A. Paris</div>
+        <div id="B" class="answer" onclick="sendAnswer('B')">B. London</div>
+        <div id="C" class="answer" onclick="sendAnswer('C')">C. Berlin</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        function sendAnswer(answer) {
+            socket.emit('submit_answer', answer);
+        }
+
+        socket.on('response', function(data) {
+            document.querySelectorAll('.answer').forEach(function(elem) {
+                elem.classList.remove('correct', 'incorrect');
+                elem.onclick = null; // Disable further clicks
+            });
+
+            if (data.correct) {
+                document.getElementById(data.answer).classList.add('correct');
+            } else {
+                document.getElementById(data.answer).classList.add('incorrect');
+            }
+        });
+    </script>
+</body>
+</html>
