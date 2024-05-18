@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, jsonify
 import json
 import random
 import os
+
 app = Flask(__name__)
 
 stations = {'Barcelona Plaça Catalunya': ['english.mp3', 'pl_cat.jpg'],
@@ -55,7 +56,7 @@ s2_stations = [
 def get_station():
     # Random station
     return random.choice(list(stations.keys()))
-    #return "Provença"
+    # return "Provença"
 
 @app.route('/')
 def index():
@@ -73,7 +74,12 @@ def location():
 def playing():
     station_name = get_station()
     audio_file, image_file = stations[station_name]
-    return render_template('playing.html', station_name=station_name, audio_file=audio_file, image_file=image_file)
+    
+    quiz_file_path = f'app/quizzes/{station_name}/en_quiz.json'
+    with open(quiz_file_path, 'r', encoding='utf-8') as f:
+        quiz_data = json.load(f)
+    
+    return render_template('playing.html', station_name=station_name, audio_file=audio_file, image_file=image_file, quiz_data=quiz_data)
 
 
 @app.route('/quiz/<station_name>')
@@ -86,4 +92,3 @@ def quiz(station_name):
 
 if __name__ == '__main__':
     app.run(debug=True)
-

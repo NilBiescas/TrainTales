@@ -4,40 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz for {{ station_name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz_styles.css') }}">
     <link href="/static/favicon_io/favicon.ico" rel="icon">
-    <script>
-        function submitQuiz() {
-            const quizForm = document.getElementById('quizForm');
-            const formData = new FormData(quizForm);
-            const results = {};
-            formData.forEach((value, key) => {
-                results[key] = value;
-            });
-            console.log('Quiz Results:', results);
-            alert('Quiz submitted! Thank you.');
-            window.location.href = '{{ url_for('index') }}';
-        }
-    </script>
 </head>
 <body>
-    <div class="container">
+    <div class="quiz-container">
         <h1>Quiz for {{ station_name }}</h1>
-        <form id="quizForm">
-            {% for question in quiz_data.questions %}
-                <div class="question">
-                    <p>{{ question.question }}</p>
+        <div id="quiz-content">
+            <!-- Questions will be injected here by JavaScript -->
+        </div>
+        <button id="next-button" onclick="nextQuestion()">Next</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        const quizData = {{ quiz_data|tojson }};
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion(index) {
+            const questionData = quizData.questions[index];
+            const questionHtml = `
+                <div class="question-card">
+                    <p class="question-text">${questionData.question}</p>
                     <div class="options">
-                        {% for key, value in question.choices.items() %}
-                            <label>
-                                <input type="radio" name="{{ loop.index0 }}" value="{{ key }}"> {{ value }}
-                            </label><br>
-                        {% endfor %}
+                        ${Object.keys(questionData.choices).map(key => `
+                            <label class="option-label">
+                                <input type="radio" name="question" value="${key}">
+                                ${key}: ${questionData.choices[key]}
+                            </label>
+                        `).join('')}
                     </div>
                 </div>
-            {% endfor %}
-            <button type="button" onclick="submitQuiz()">Submit Quiz</button>
-        </form>
-    </div>
+            `;
+            document.getElementById('quiz-content').innerHTML = questionHtml;
+        }
+
+        function nextQuestion() {
+            const selectedOption = document.querySelector('input[name="question"]:checked');
+            if (!selectedOption) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            const correctAnswer = quizData.questions[currentQuestionIndex].correct;
+            if (selectedOption.value === correctAnswer) {
+                score++;
+                document.querySelector('label.option-label').style.backgroundColor = '#d4edda';
+            } else {
+                document.querySelector('label.option-label').style.backgroundColor = '#f8d7da';
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.questions.length) {
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="result-card">
+                    <p>Your score is ${score}/${quizData.questions.length}</p>
+                </div>
+            `;
+            document.getElementById('next-button').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuestion(currentQuestionIndex);
+        });
+    </script>
 </body>
 </html>

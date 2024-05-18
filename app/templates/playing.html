@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playing</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz_styles.css') }}">
     <link href="/static/favicon_io/favicon.ico" rel="icon">
     <script>
         function pauseAudio() {
@@ -33,13 +34,82 @@
             window.location.href = '{{ url_for('index') }}';
         }
 
+        function showQuiz() {
+            document.getElementById('quiz-modal').style.display = 'block';
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').style.display = 'none';
+            window.location.href = '{{ url_for('index') }}';
+        }
+
         function redirectToQuiz() {
-            window.location.href = '{{ url_for('quiz', station_name=station_name) }}';
+            showQuiz();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('audio');
             audio.addEventListener('ended', redirectToQuiz);
+        });
+
+        const quizData = {{ quiz_data|tojson }};
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion(index) {
+            const questionData = quizData.questions[index];
+            const questionHtml = `
+                <div class="question-card">
+                    <p class="question-text">${questionData.question}</p>
+                    <div class="options">
+                        ${Object.keys(questionData.choices).map(key => `
+                            <label class="option-label">
+                                <input type="radio" name="question" value="${key}">
+                                ${key}: ${questionData.choices[key]}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            document.getElementById('quiz-content').innerHTML = questionHtml;
+        }
+
+        function nextQuestion() {
+            const selectedOption = document.querySelector('input[name="question"]:checked');
+            if (!selectedOption) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            const correctAnswer = quizData.questions[currentQuestionIndex].correct;
+            if (selectedOption.value === correctAnswer) {
+                score++;
+                selectedOption.parentElement.style.backgroundColor = '#d4edda';
+            } else {
+                selectedOption.parentElement.style.backgroundColor = '#f8d7da';
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.questions.length) {
+                setTimeout(() => loadQuestion(currentQuestionIndex), 1000);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="result-card">
+                    <p>Your score is ${score}/${quizData.questions.length}</p>
+                </div>
+            `;
+            document.getElementById('next-button').textContent = 'Close Quiz';
+            document.getElementById('next-button').onclick = closeQuiz;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuestion(currentQuestionIndex);
         });
     </script>
 </head>
@@ -61,6 +131,18 @@
             You are currently near: {{ station_name }}
         </div>
         <img class="location-image" src="{{ url_for('static', filename='stations_img/' + image_file) }}" alt="Current Location">
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <h1>Quiz for {{ station_name }}</h1>
+            <div id="quiz-content">
+                <!-- Questions will be injected here by JavaScript -->
+            </div>
+            <button id="next-button" onclick="nextQuestion()">Next</button>
+            <div id="result"></div>
+        </div>
     </div>
 </body>
 </html>
