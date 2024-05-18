@@ -107,6 +107,32 @@ def init_station(init_lat, init_lon):
     desti = my_train['fields']['desti']
     return next_stations, desti
 
+
+stations = ['PC',
+ 'PR',
+ 'GR',
+ 'SG',
+ 'MN',
+ 'BN',
+ 'TT',
+ 'SR',
+ 'PF',
+ 'VL',
+ 'LP',
+ 'LF',
+ 'VD',
+ 'SC',
+ 'VO',
+ 'SJ',
+ 'BT',
+ 'UN',
+ 'SQ',
+ 'CF',
+ 'PJ',
+ 'CT',
+ 'NO',
+ 'PN']
+
 def logic_app():
     
     with open(r'C:\Users\34644\Desktop\UABHACK\train_infor\idx2station.json', 'r') as file:
@@ -114,6 +140,34 @@ def logic_app():
     with open(r'C:\Users\34644\Desktop\UABHACK\train_infor\station2idx.json', 'r') as file:
         station2idx = json.load(file)
     next_stations, desti = init_station(41.3851, 2.1734)
+    direction = 1 if desti == stations[-1] else -1
+    next_station_index = stations.index(next_stations)
+    return next_station_index, direction
+
+with open(r'C:\Users\34644\Desktop\UABHACK\app1\static\stations_s2.json', 'r') as file:
+    lat_long_stations = json.load(file)
+
+def in_station(index_station, our_lat, our_lon):
+    result = lat_long_stations['stations'][index_station]
+    lat, long = result['lat'], result['long']
+    distance = haversine(our_lat, our_lon, lat, long)
+    if distance < 0.1: # Comprobar distancia
+        return True
+    return False
+
+def update_location():
+    data = request.json
+    latitude = data.get('latitude')
+    longitude = data.get('longitude')
+    return latitude, longitude
+    
+def get_near_station(curr_lat, curr_long):
+    latitude, longitude = update_location()
+    in_station()
+    
+    
+    # return 
+    
     
 # Example usage
 #station_code = 'PR'

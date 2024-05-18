@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Entertainment App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="/static/favicon_io/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            background-color: #ffefd5;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .play-button {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            position: absolute;
+            left: 42px;
+        }
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        .description {
+            font-size: 1.5em;
+            color: #333;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map;
+        var myIcon = L.icon({
+            iconUrl: 'https://static.thenounproject.com/png/1669733-200.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32]
+        });
+
+        var iconMarker;
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showMap, showError, { enableHighAccuracy: true });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showMap(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Initialize the map
+            map = L.map('map').setView([latitude, longitude], 13);
+
+            // Add a tile layer to the map
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            iconMarker = L.marker([latitude, longitude], {icon: myIcon}).addTo(map)
+                .bindPopup('You are moving')
+                .openPopup();
+
+            // Start updating the user's location every 10 seconds
+            setInterval(fetchUpdatedLocation, 10000);
+        }
+
+        function fetchUpdatedLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(updateLocation, showError, { enableHighAccuracy: true });
+            }
+        }
+
+        function updateLocation(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            fetch('/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ latitude: latitude, longitude: longitude })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Updated location data:', data);
+                updateIconPosition(data.latitude, data.longitude);
+            })
+            .catch((error) => {
+                console.error('Error fetching updated location:', error);
+            });
+        }
+        fetch('/static/stations_s2.json')
+        .then(response => response.json())
+        .then(stationData => {
+            // Add markers for each station in the JSON data
+            for (const station in stationData.stations) {
+                if (stationData.stations.hasOwnProperty(station)) {
+                    const stationInfo = stationData.stations[station];
+                    L.marker([stationInfo.lat, stationInfo.lon]).addTo(map)
+                        .bindPopup(`${station} (Line: ${stationInfo.line})`)
+                        .openPopup();
+                }
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching station data:', error);
+        });
+
+        function updateIconPosition(latitude, longitude) {
+            if (iconMarker) {
+                iconMarker.setLatLng([latitude, longitude]);
+            }
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            getLocation();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="play-button" onclick="window.location.href='{{ url_for('playing') }}'"></div>
+        <p class="description">Tell me something...</p>
+        <div id="map"></div>
+    </div>
+</body>
+</html>
