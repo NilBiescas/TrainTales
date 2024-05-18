@@ -5,29 +5,16 @@ client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
-# Function to make an api call and get the response from the model
-def get_model_response(user_input=None, user_data=None):
-    
+# Function to make an API call and get the response from the model
+def get_model_response(station_name, language="EN"):
     # Make an API call to the chat endpoint
-    messages = []
-    
-    '''if user_data:
-        messages.append({
-            "role": "system",
-            "content": f"You are talking to a person of {user_data['age']} years old, is a person who likes the following topics: {user_data['likes']} and\
-                        prefers {user_data['learning_preference']}% of theory and {100 - user_data['learning_preference']}% of examples and practice in the explanations,\
-                        so respond accordingly. Take into account this information to provide better personalized explanations."
-        })'''
-    
-    messages.append({
-            "role": "system",
-            "content": "You are a touristic guide talking to a kid of 8 years old who is using the train to travell with his family. Your objective is to tell the kid relevant information about the place he is visiting in such a way that he can understand it and be engaged with the story. Take into account that the station where this kid is is Vallbona, from Barcelona."}),
-
-    # Append the current user input to the message history
-    messages.append({
+    messages = [{
+        "role": "system",
+        "content": f"You are a touristic guide talking to a kid of 8 years old who is using the train to travel with his family. Your objective is to tell the kid relevant information about the place he is visiting in such a way that he can understand it and be engaged with the story. The kid is arriving at the station {station_name} in Barcelona. Describe what the kid can see through the window, include interesting landmarks, historical facts, and any fun stories about the surroundings. You should answer entirely in {language}"
+    }, {
         "role": "user",
-        "content": "I am a kid of 8 years old traveling around Vallbona, Barcelona. Can you tell me something interesting about this place?",
-    })
+        "content": f"Hi, I'm an 8-year-old kid and I’m on a train with my family. We’re just arriving at {station_name} station in Barcelona. I'm looking through the window. Can you tell me something interesting about what I can see and the history of this place? Do it in {language}"
+    }]
     
     chat_completion = client.chat.completions.create(
         messages=messages,
@@ -38,7 +25,6 @@ def get_model_response(user_input=None, user_data=None):
     return chat_completion.choices[0].message.content
 
 if __name__ == "__main__":
+    station_name = "Vallbona"
+    print(get_model_response(station_name, language="EN"))
 
-    # Print the response from the model
-
-    print(get_model_response())
