@@ -37,11 +37,11 @@
 <body>
     <div class="container">
         <div class="assistant-bot">
-            <img src="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png') }}" alt="Assistant Bot" class="bot-icon">
+            <img src="{{ url_for('static', filename='favicon_io/small_icon.png') }}" alt="Assistant Bot" class="bot-icon">
             <div class="speaking-symbol" style="background: url('{{ url_for('static', filename='favicon_io/speaking_symbol.png') }}') no-repeat center center;"></div>
         </div>
         <audio id="audio" autoplay>
-            <source src="{{ url_for('static', filename='audio/story.mp3') }}" type="audio/mpeg">
+            <source src="{{ url_for('static', filename='train_stories/' + station_name + '/english.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="button-container">
@@ -49,9 +49,9 @@
             <div class="button stop-button" onclick="stopAudio()"></div>
         </div>
         <div class="location-info">
-            You are currently near: Plaza Catalunya
+            You are currently near: {{ station_name }}
         </div>
-        <img class="location-image" src="{{ url_for('static', filename='stations_img/pl_cat.jpg') }}" alt="Current Location">
+        <img class="location-image" src="{{ url_for('static', filename='stations_img/' + image_file) }}" alt="Current Location">
     </div>
 </body>
 </html>
