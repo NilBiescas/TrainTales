@@ -100,6 +100,21 @@ def get_station_name_by_code(station_code):
     else:
         return f"Error: {response.status_code}, {response.text}"
 
+
+def init_station(init_lat, init_lon):
+    my_train = get_train(user_lat = init_lat, user_lon = init_lon)
+    next_stations = get_next_stations(my_train)
+    desti = my_train['fields']['desti']
+    return next_stations, desti
+
+def logic_app():
+    
+    with open(r'C:\Users\34644\Desktop\UABHACK\train_infor\idx2station.json', 'r') as file:
+        idx2station = json.load(file)
+    with open(r'C:\Users\34644\Desktop\UABHACK\train_infor\station2idx.json', 'r') as file:
+        station2idx = json.load(file)
+    next_stations, desti = init_station(41.3851, 2.1734)
+    
 # Example usage
 #station_code = 'PR'
 #station_name = get_station_name_by_code(station_code)
