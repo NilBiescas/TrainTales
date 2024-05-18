@@ -83,9 +83,6 @@ def location():
         session['next_station_index'] = next_station_index
         session['direction'] = direction
     
-    latitude = 41.5474198
-    longitude = 2.1088815
-    
     next_station_index = update_next_station_index(next_station_index, direction, latitude, longitude)
     print(next_station_index, direction)
 

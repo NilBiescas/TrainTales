@@ -43,8 +43,6 @@
                 .openPopup();
 
 
-
-
             // Fetch station data from JSON file
             fetch('/static/stations_s2.json')
                 .then(response => response.json())
@@ -53,8 +51,8 @@
                     for (const station in stationData.stations) {
                         if (stationData.stations.hasOwnProperty(station)) {
                             const stationInfo = stationData.stations[station];
-                            L.marker([stationInfo.lat, stationInfo.lon]).addTo(map)
-                                .bindPopup(`${station} (Line: ${stationInfo.line})`)
+                            L.marker([stationInfo.lat, stationInfo.long]).addTo(map)
+                                .bindPopup(`${stationInfo.name}`)
                                 .openPopup();
                         }
                     }
@@ -119,7 +117,7 @@
             for (const station in stationData.stations) {
                 if (stationData.stations.hasOwnProperty(station)) {
                     const stationInfo = stationData.stations[station];
-                    L.marker([stationInfo.lat, stationInfo.lon]).addTo(map)
+                    L.marker([stationInfo.lat, stationInfo.long]).addTo(map)
                         .bindPopup(`${station} (Line: ${stationInfo.line})`)
                         .openPopup();
                 }

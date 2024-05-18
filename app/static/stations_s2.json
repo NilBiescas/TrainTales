@@ -1,16 +1,109 @@
 {
     "stations": {
-      "Bellaterra": {"lat": 41.5001, "lon": 2.1069, "line": "S2"},
-      "Sant Cugat": {"lat": 41.4735, "lon": 2.0847, "line": "S2"},
-      "Volpelleres": {"lat": 41.4783, "lon": 2.0815, "line": "S2"},
-      "La Floresta": {"lat": 41.4372, "lon": 2.0783, "line": "S2"},
-      "Les Planes": {"lat": 41.4244, "lon": 2.0889, "line": "S2"},
-      "Baixador de Vallvidrera": {"lat": 41.4184, "lon": 2.1045, "line": "S2"},
-      "Peu del Funicular": {"lat": 41.4087, "lon": 2.1139, "line": "S2"},
-      "Sarrià": {"lat": 41.3997, "lon": 2.1244, "line": "S2"},
-      "Gràcia": {"lat": 41.3988, "lon": 2.1561, "line": "S2"},
-      "Provença": {"lat": 41.3917, "lon": 2.1639, "line": "S2"},
-      "Plaça de Catalunya": {"lat": 41.3870, "lon": 2.1698, "line": "S2"}
+        "PC": {
+            "lat": 41.38563194,
+            "long": 2.168720219,
+            "name": "Plaça Catalunya"
+        },
+        "PR": {
+            "lat": 41.39281434,
+            "long": 2.158030869,
+            "name": "Provença"
+        },
+        "GR": {
+            "lat": 41.39909823,
+            "long": 2.152662325,
+            "name": "Gràcia"
+        },
+        "SG": {
+            "lat": 41.40106608,
+            "long": 2.147133783,
+            "name": "Sant Gervasi"
+        },
+        "MN": {
+            "lat": 41.39852644,
+            "long": 2.142346041,
+            "name": "Muntaner"
+        },
+        "BN": {
+            "lat": 41.39781569,
+            "long": 2.136433966,
+            "name": "La Bonanova"
+        },
+        "TT": {
+            "lat": 41.39780042,
+            "long": 2.130811822,
+            "name": "Les Tres Torres"
+        },
+        "SR": {
+            "lat": 41.39849938,
+            "long": 2.125574875,
+            "name": "Sarrià"
+        },
+        "PF": {
+            "lat": 41.40921616,
+            "long": 2.111181541,
+            "name": "Peu del Funicular"
+        },
+        "VL": {
+            "lat": 41.42009441,
+            "long": 2.096936777,
+            "name": "Valldoreix"
+        },
+        "LF": {
+            "lat": 41.44487408,
+            "long": 2.073166144,
+            "name": "La Floresta"
+        },
+        "VD": {
+            "lat": 41.45784156,
+            "long": 2.06831203,
+            "name": "Baixador de Vallvidrera"
+        },
+        "SC": {
+            "lat": 41.46791038,
+            "long": 2.078203288,
+            "name": "Sant Cugat Centre"
+        },
+        "VO": {
+            "lat": 41.481248,
+            "long": 2.072928,
+            "name": "Volpelleres"
+        },
+        "SJ": {
+            "lat": 41.49015388,
+            "long": 2.076498641,
+            "name": "Sant Joan"
+        },
+        "BT": {
+            "lat": 41.50085844,
+            "long": 2.090556583,
+            "name": "Bellaterra"
+        },
+        "UN": {
+            "lat": 41.50285282,
+            "long": 2.102510441,
+            "name": "Universitat Autònoma"
+        },
+        "SQ": {
+            "lat": 41.52999155,
+            "long": 2.088722533,
+            "name": "Sant Quirze"
+        },
+        "CF": {
+            "lat": 41.542522966,
+            "long": 2.100463866,
+            "name": "Can Feu | Gràcia"
+        },
+        "NO": {
+            "lat": 41.561225,
+            "long": 2.096657,
+            "name": "Sabadell Nord"
+        },
+        "PN": {
+            "lat": 41.571291,
+            "long": 2.089499,
+            "name": "Sabadell Parc del Nord"
+        }
     }
-  }
-  
+}

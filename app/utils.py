@@ -11,7 +11,7 @@ endpoint_url = 'https://dadesobertes.fgc.cat/api/records/1.0/search/'
 with open(r'C:\Users\34644\Desktop\UABHACK\train_infor\idx2station.json', 'r', encoding='utf-8') as file:
     idx2station = json.load(file)
     
-with open(r'C:\Users\34644\Desktop\UABHACK\app\static\station_s2_V2.json', 'r', encoding='utf-8') as file:
+with open(r'C:\Users\34644\Desktop\UABHACK\app\static\stations_s2.json', 'r', encoding='utf-8') as file:
     lat_long_stations = json.load(file)
 
 path_json = r'C:\Users\34644\Desktop\UABHACK\train_infor\codis_info_lineas.json'
@@ -107,7 +107,7 @@ def get_train(user_lat, user_lon):
     return my_train
 
 def in_station(index_station, our_lat, our_lon):
-    abrebiation_station = stations_index[index_station]
+    abrebiation_station = index_station
     result = lat_long_stations['stations'][abrebiation_station]
     lat, long = result['lat'], result['long']
     distance = haversine(our_lat, our_lon, lat, long)
@@ -129,8 +129,9 @@ def init_station(init_lat, init_lon):
     return next_station_index, direction
 
 def logic_app(latitude, longitude):
-    next_stations, desti = init_station(latitude, longitude)
+    next_station_index, desti = init_station(latitude, longitude)
 
     direction = 1 if desti == stations_index[-1] else -1
-    next_station_index = stations_index.index(next_stations)
+    next_station_index = stations_index[next_station_index]
+    # next_station_index = stations_index.index(next_stations)
     return next_station_index, direction
