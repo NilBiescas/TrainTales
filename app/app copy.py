@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, session
 import random
 import os
 import json
-from utils import *
+from app.utils import *
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Required for using sessions
