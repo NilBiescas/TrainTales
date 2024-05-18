@@ -38,14 +38,12 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            // Add a marker to the map at the user's location
-            L.marker([latitude, longitude]).addTo(map)
-                .bindPopup('You are here!')
+            iconMarker = L.marker([latitude, longitude], {icon: myIcon}).addTo(map)
+                .bindPopup('Train')
                 .openPopup();
 
-            iconMarker = L.marker([41.3851, 2.1734], {icon: myIcon}).addTo(map)
-                .bindPopup('Barcelona')
-                .openPopup();
+
+
 
             // Fetch station data from JSON file
             fetch('/static/stations_s2.json')
@@ -85,29 +83,75 @@
             });
 
             // Testing: Move the icon a little bit every second
-            setInterval(updateIconPosition, 100000);
+            setInterval(fetchUpdatedLocation, 100000);
         }
 
-        function updateIconPosition() {
-            // Generate random small changes in latitude and longitude for testing
-            const deltaLat = Math.random() * 0.01 - 0.005;
-            const deltaLon = Math.random() * 0.01 - 0.005;
-
-            // Get the current icon position
-            const currentLatLng = iconMarker.getLatLng();
-
-            // Calculate the new position
-            const newLatLng = {
-                lat: currentLatLng.lat + deltaLat,
-                lng: currentLatLng.lng + deltaLon
-            };
-
-            // Update the icon position
-            iconMarker.setLatLng(newLatLng);
-
-            // Uncomment the line below to open the popup at the new position (optional)
-            // iconMarker.openPopup();
+        function fetchUpdatedLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(updateLocation, showError, { enableHighAccuracy: true });
+            }
         }
+
+        function updateLocation(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            fetch('/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ latitude: latitude, longitude: longitude })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Updated location data:', data);
+                updateIconPosition(data.latitude, data.longitude);
+            })
+            .catch((error) => {
+                console.error('Error fetching updated location:', error);
+            });
+        }
+        fetch('/static/stations_s2.json')
+        .then(response => response.json())
+        .then(stationData => {
+            // Add markers for each station in the JSON data
+            for (const station in stationData.stations) {
+                if (stationData.stations.hasOwnProperty(station)) {
+                    const stationInfo = stationData.stations[station];
+                    L.marker([stationInfo.lat, stationInfo.lon]).addTo(map)
+                        .bindPopup(`${station} (Line: ${stationInfo.line})`)
+                        .openPopup();
+                }
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching station data:', error);
+        });
+
+        function updateIconPosition(latitude, longitude) {
+            if (iconMarker) {
+                iconMarker.setLatLng([latitude, longitude]);
+            }
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
 
         function startAudio() {
             var audio = document.getElementById('audio');

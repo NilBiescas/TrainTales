@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 import json
 import random
 import os
+from utils import *
 
 app = Flask(__name__)
+app.secret_key = 'supersecretkey'
 
 stations = {'Barcelona Plaça Catalunya': ['english.mp3', 'pl_cat.jpg'],
             'Provença': ['english.mp3', 'provença.png'],
@@ -26,32 +28,32 @@ stations = {'Barcelona Plaça Catalunya': ['english.mp3', 'pl_cat.jpg'],
             'Sant Quirze': ['english.mp3', 'sant_quirze.jpg'],
             }
 
-s2_stations = [
-    "Barcelona Plaça Catalunya",
-    "Provença",
-    "Gràcia",
-    "Sant Gervasi",
-    "Muntaner",
-    "La Bonanova",
-    "Les Tres Torres",
-    "Sarrià",
-    "Peu del Funicular",
-    "Baixador de Vallvidrera",
-    "Les Planes",
-    "La Floresta",
-    "Valldoreix",
-    "Sant Cugat",
-    "Volpelleres",
-    "Sant Joan",
-    "Bellaterra",
-    "Universitat Autònoma",
-    "Sant Quirze",
-    "Can Feu | Gràcia",
-    "Sabadell Plaça Major",
-    "La Creu Alta",
-    "Sabadell Nord",
-    "Sabadell Parc del Nord"
-]
+# s2_stations = [
+#     "Barcelona Plaça Catalunya",
+#     "Provença",
+#     "Gràcia",
+#     "Sant Gervasi",
+#     "Muntaner",
+#     "La Bonanova",
+#     "Les Tres Torres",
+#     "Sarrià",
+#     "Peu del Funicular",
+#     "Baixador de Vallvidrera",
+#     "Les Planes",
+#     "La Floresta",
+#     "Valldoreix",
+#     "Sant Cugat",
+#     "Volpelleres",
+#     "Sant Joan",
+#     "Bellaterra",
+#     "Universitat Autònoma",
+#     "Sant Quirze",
+#     "Can Feu | Gràcia",
+#     "Sabadell Plaça Major",
+#     "La Creu Alta",
+#     "Sabadell Nord",
+#     "Sabadell Parc del Nord"
+# ]
 
 def get_station():
     return random.choice(list(stations.keys()))
@@ -60,6 +62,10 @@ def get_station():
 def index():
     station_name = get_station()
     audio_file, image_file = stations[station_name]
+    
+    session['next_station_index'] = None
+    session['direction'] = None
+    
     return render_template('home.html', station_name=station_name, audio_file=audio_file, image_file=image_file)
 
 @app.route('/location', methods=['POST'])
@@ -67,7 +73,25 @@ def location():
     data = request.json
     latitude = data.get('latitude')
     longitude = data.get('longitude')
-    return jsonify({'status': 'success', 'latitude': latitude, 'longitude': longitude, 'station_name': 'Barcelona Plaça Catalunya'})
+    
+    next_station_index = session.get('next_station_index')
+    direction = session.get('direction')
+    print("Sessions values 2:", next_station_index, direction)
+    
+    if next_station_index is None or direction is None:
+        next_station_index, direction = logic_app(latitude, longitude)
+        session['next_station_index'] = next_station_index
+        session['direction'] = direction
+    
+    latitude = 41.5474198
+    longitude = 2.1088815
+    
+    next_station_index = update_next_station_index(next_station_index, direction, latitude, longitude)
+    print(next_station_index, direction)
+
+    session['next_station_index'] = next_station_index
+
+    return jsonify({'status': 'success', 'latitude': latitude, 'longitude': longitude})
 
 @app.route('/quiz/<station_name>')
 def quiz(station_name):
