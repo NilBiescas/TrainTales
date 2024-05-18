@@ -5,58 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kids Entertainment App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz_styles.css') }}">
     <link href="/static/favicon_io/favicon.ico" rel="icon">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        body {
-            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-            background-color: #ffefd5;
-            text-align: center;
-            padding: 50px;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            position: absolute;
-            left: 42px;
-        }
-        .play-button:hover {
-            transform: scale(1.1);
-        }
-        .description {
-            font-size: 1.5em;
-            color: #333;
-        }
-        #map {
-            height: 500px;
-            width: 100%;
-            margin-top: 20px;
-        }
-    </style>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var myIcon = L.icon({
@@ -157,13 +108,63 @@
             // Uncomment the line below to open the popup at the new position (optional)
             // iconMarker.openPopup();
         }
+
+        function startAudio() {
+            var audio = document.getElementById('audio');
+            audio.play();
+            document.getElementById('play-button').style.display = 'none';
+            document.getElementById('pause-button').style.display = 'block';
+            document.getElementById('stop-button').style.display = 'block';
+        }
+
+        function pauseAudio() {
+            var audio = document.getElementById('audio');
+            if (audio.paused) {
+                audio.play();
+                document.getElementById('pause-button').style.backgroundImage = "url('{{ url_for('static', filename='icons/pause.jpg') }}')";
+            } else {
+                audio.pause();
+                document.getElementById('pause-button').style.backgroundImage = "url('{{ url_for('static', filename='icons/play.jpg') }}')";
+            }
+        }
+
+        function stopAudio() {
+            var audio = document.getElementById('audio');
+            audio.pause();
+            audio.currentTime = 0;
+            document.getElementById('play-button').style.display = 'block';
+            document.getElementById('pause-button').style.display = 'none';
+            document.getElementById('stop-button').style.display = 'none';
+        }
     </script>
 </head>
 <body onload="getLocation()">
+    <div id="map"></div>
     <div class="container">
-        <div class="play-button" onclick="window.location.href='{{ url_for('playing') }}'"></div>
-        <p class="description">Tell me something...</p>
-        <div id="map"></div>
+        <div class="top-right-corner">
+            <div class="location-info">You are currently in: {{ station_name }}</div>
+            <img class="location-image" src="{{ url_for('static', filename='stations_img/' + image_file) }}" alt="Current Location">
+        </div>
+        <audio id="audio">
+            <source src="{{ url_for('static', filename='train_stories/' + station_name + '/english.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="button-container">
+            <div id="play-button" class="play-button" onclick="startAudio()"></div>
+            <div id="pause-button" class="pause-button" onclick="pauseAudio()"></div>
+            <div id="stop-button" class="stop-button" onclick="stopAudio()"></div>
+        </div>
+    </div>
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <h1>Quiz for {{ station_name }}</h1>
+            <div id="quiz-content">
+                <!-- Questions will be injected here by JavaScript -->
+            </div>
+            <button id="next-button" onclick="nextQuestion()">Next</button>
+            <div id="result"></div>
+        </div>
     </div>
 </body>
 </html>

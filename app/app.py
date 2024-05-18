@@ -54,33 +54,20 @@ s2_stations = [
 ]
 
 def get_station():
-    # Random station
     return random.choice(list(stations.keys()))
-    # return "Provença"
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    station_name = get_station()
+    audio_file, image_file = stations[station_name]
+    return render_template('home.html', station_name=station_name, audio_file=audio_file, image_file=image_file)
 
 @app.route('/location', methods=['POST'])
 def location():
     data = request.json
     latitude = data.get('latitude')
     longitude = data.get('longitude')
-
     return jsonify({'status': 'success', 'latitude': latitude, 'longitude': longitude, 'station_name': 'Barcelona Plaça Catalunya'})
-
-@app.route('/playing')
-def playing():
-    station_name = get_station()
-    audio_file, image_file = stations[station_name]
-    
-    quiz_file_path = f'app/quizzes/{station_name}/en_quiz.json'
-    with open(quiz_file_path, 'r', encoding='utf-8') as f:
-        quiz_data = json.load(f)
-    
-    return render_template('playing.html', station_name=station_name, audio_file=audio_file, image_file=image_file, quiz_data=quiz_data)
-
 
 @app.route('/quiz/<station_name>')
 def quiz(station_name):
@@ -88,7 +75,6 @@ def quiz(station_name):
     with open(quiz_file_path, 'r', encoding='utf-8') as f:
         quiz_data = json.load(f)
     return render_template('quiz.html', station_name=station_name, quiz_data=quiz_data)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
