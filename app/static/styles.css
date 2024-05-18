@@ -11,20 +11,99 @@ body {
     justify-content: center;
     height: 100vh;
 }
-.play-button {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 100px solid red;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.play-button:hover {
+.button {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+.pause-button {
+    background-color: orange;
+}
+.play-button {
+    background-color: green;
+}
+.stop-button {
+    background-color: red;
+}
+.button:hover {
     transform: scale(1.1);
 }
-.description {
-    font-size: 1.5em;
+.button::before {
+    content: '';
+    width: 0;
+    height: 0;
+}
+.pause-button::before, .pause-button::after {
+    content: '';
+    width: 20px;
+    height: 40px;
+    background-color: white;
+    position: absolute;
+}
+.pause-button::before {
+    left: 25px;
+}
+.pause-button::after {
+    right: 25px;
+}
+.play-button::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 0 20px 30px;
+    border-color: transparent transparent transparent white;
+    position: absolute;
+}
+.stop-button::before {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    position: absolute;
+}
+.location-info {
+    margin-top: 20px;
+    font-size: 24px;
     color: #333;
+}
+.location-image {
+    margin-top: 10px;
+    width: 500px; /* Set a fixed width */
+    height: 300px; /* Set a fixed height */
+    object-fit: cover; /* Ensure the image covers the specified dimensions while maintaining aspect ratio */
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+.assistant-bot {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+.bot-icon {
+    width: 100%;
+    height: 100%;
+}
+.speaking-symbol {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    display: none;
 }

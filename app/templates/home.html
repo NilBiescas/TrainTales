@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kids Entertainment App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="/static/favicon_io/favicon.ico" rel="icon">
     <style>
         body {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-            background-color: #f9f9f9;
+            background-color: #ffefd5;
             text-align: center;
             padding: 50px;
         }
@@ -20,14 +21,27 @@
             height: 100vh;
         }
         .play-button {
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 100px solid red;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             margin-bottom: 20px;
             transition: transform 0.3s ease;
+            position: relative;
+        }
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            position: absolute;
+            left: 42px;
         }
         .play-button:hover {
             transform: scale(1.1);
@@ -41,7 +55,7 @@
 <body>
     <div class="container">
         <div class="play-button" onclick="window.location.href='{{ url_for('playing') }}'"></div>
-        <p class="description">Tell me something</p>
+        <p class="description">Tell me something...</p>
     </div>
 </body>
 </html>

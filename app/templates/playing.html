@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="/static/favicon_io/favicon.ico" rel="icon">
+    <script>
+        function pauseAudio() {
+            var audio = document.getElementById('audio');
+            var pauseButton = document.querySelector('.pause-button, .play-button');
+            var speakingSymbol = document.querySelector('.speaking-symbol');
+            if (audio.paused) {
+                audio.play();
+                pauseButton.classList.remove('play-button');
+                pauseButton.classList.add('pause-button');
+                speakingSymbol.style.display = 'block';
+            } else {
+                audio.pause();
+                pauseButton.classList.remove('pause-button');
+                pauseButton.classList.add('play-button');
+                speakingSymbol.style.display = 'none';
+            }
+        }
+
+        function stopAudio() {
+            var audio = document.getElementById('audio');
+            audio.pause();
+            audio.currentTime = 0;
+            var speakingSymbol = document.querySelector('.speaking-symbol');
+            speakingSymbol.style.display = 'none';
+            window.location.href = '{{ url_for('index') }}';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="assistant-bot">
+            <img src="{{ url_for('static', filename='favicon_io/android-chrome-192x192.png') }}" alt="Assistant Bot" class="bot-icon">
+            <div class="speaking-symbol" style="background: url('{{ url_for('static', filename='favicon_io/speaking_symbol.png') }}') no-repeat center center;"></div>
+        </div>
+        <audio id="audio" autoplay>
+            <source src="{{ url_for('static', filename='audio/story.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="button-container">
+            <div class="button pause-button" onclick="pauseAudio()"></div>
+            <div class="button stop-button" onclick="stopAudio()"></div>
+        </div>
+        <div class="location-info">
+            You are currently near: Plaza Catalunya
+        </div>
+        <img class="location-image" src="{{ url_for('static', filename='stations_img/pl_cat.jpg') }}" alt="Current Location">
+    </div>
+</body>
+</html>
