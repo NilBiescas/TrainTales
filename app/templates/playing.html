@@ -32,6 +32,15 @@
             speakingSymbol.style.display = 'none';
             window.location.href = '{{ url_for('index') }}';
         }
+
+        function redirectToQuiz() {
+            window.location.href = '{{ url_for('quiz', station_name=station_name) }}';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('audio');
+            audio.addEventListener('ended', redirectToQuiz);
+        });
     </script>
 </head>
 <body>
@@ -49,9 +58,9 @@
             <div class="button stop-button" onclick="stopAudio()"></div>
         </div>
         <div class="location-info">
-            You are currently near: Plaza Catalunya
+            You are currently near: {{ station_name }}
         </div>
-        <img class="location-image" src="{{ url_for('static', filename='stations_img/pl_cat.jpg') }}" alt="Current Location">
+        <img class="location-image" src="{{ url_for('static', filename='stations_img/' + image_file) }}" alt="Current Location">
     </div>
 </body>
 </html>
