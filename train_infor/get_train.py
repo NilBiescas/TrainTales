@@ -70,6 +70,11 @@ def get_train(user_lat, user_lon):
             break
     return my_train
 
+def get_next_stations(my_train):
+    stations = my_train['fields']['properes_parades']
+    stations = stations.split(';')
+    nex_stations = eval(stations[0])['parada']
+    return get_station_name_by_code(nex_stations)
 
 # Function to get the full name based on station code
 def get_station_name_by_code(station_code):
