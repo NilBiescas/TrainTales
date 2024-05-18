@@ -4,48 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz for {{ station_name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='quiz_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="/static/favicon_io/favicon.ico" rel="icon">
+    <script>
+        function submitQuiz() {
+            const quizForm = document.getElementById('quizForm');
+            const formData = new FormData(quizForm);
+            const results = {};
+            formData.forEach((value, key) => {
+                results[key] = value;
+            });
+            console.log('Quiz Results:', results);
+            alert('Quiz submitted! Thank you.');
+            window.location.href = '{{ url_for('index') }}';
+        }
+    </script>
 </head>
 <body>
-    <div class="quiz-container">
+    <div class="container">
         <h1>Quiz for {{ station_name }}</h1>
-        <form id="quiz-form">
+        <form id="quizForm">
             {% for question in quiz_data.questions %}
-            <div class="question-block">
-                <p>{{ loop.index }}. {{ question.question }}</p>
-                <ul>
-                    {% for choice, answer in question.choices.items() %}
-                    <li>
-                        <label>
-                            <input type="radio" name="question-{{ loop.parent.index }}" value="{{ choice }}">
-                            {{ choice }}: {{ answer }}
-                        </label>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
+                <div class="question">
+                    <p>{{ question.question }}</p>
+                    <div class="options">
+                        {% for key, value in question.choices.items() %}
+                            <label>
+                                <input type="radio" name="{{ loop.index0 }}" value="{{ key }}"> {{ value }}
+                            </label><br>
+                        {% endfor %}
+                    </div>
+                </div>
             {% endfor %}
-            <button type="submit">Submit</button>
+            <button type="button" onclick="submitQuiz()">Submit Quiz</button>
         </form>
-        <div id="result"></div>
     </div>
-    <script>
-        document.getElementById('quiz-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const form = event.target;
-            const data = new FormData(form);
-            const resultDiv = document.getElementById('result');
-            let score = 0;
-            let total = {{ quiz_data.questions|length }};
-            {% for question in quiz_data.questions %}
-            const correctAnswer = "{{ question.correct }}";
-            const userAnswer = data.get("question-{{ loop.index }}");
-            if (userAnswer === correctAnswer) {
-                score++;
-            }
-            {% endfor %}
-            resultDiv.innerHTML = `<p>Your score is ${score}/${total}</p>`;
-        });
-    </script>
 </body>
 </html>

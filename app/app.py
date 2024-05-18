@@ -73,19 +73,17 @@ def location():
 def playing():
     station_name = get_station()
     audio_file, image_file = stations[station_name]
-    print(station_name, audio_file, image_file)
     return render_template('playing.html', station_name=station_name, audio_file=audio_file, image_file=image_file)
+
 
 @app.route('/quiz/<station_name>')
 def quiz(station_name):
-    quiz_file_path = os.path.join('quizzes', station_name, 'english_gemini_quiz.json')
-    if not os.path.exists(quiz_file_path):
-        return jsonify({'error': 'Quiz not found'}), 404
-
+    quiz_file_path = f'app/quizzes/{station_name}/en_quiz.json'
     with open(quiz_file_path, 'r', encoding='utf-8') as f:
         quiz_data = json.load(f)
-
     return render_template('quiz.html', station_name=station_name, quiz_data=quiz_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
+
