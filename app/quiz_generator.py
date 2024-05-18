@@ -1,7 +1,7 @@
 import os
 import json
 from groq_quiz import get_quiz_questions
-
+#from gemini_quiz import get_quiz_questions
 # Stations for which to generate quizzes
 s2_stations = [
     "Barcelona Plaça Catalunya",
