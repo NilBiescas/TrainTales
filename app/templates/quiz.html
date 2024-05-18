@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz for {{ station_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz_styles.css') }}">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz for {{ station_name }}</h1>
+        <form id="quiz-form">
+            {% for question in quiz_data.questions %}
+            <div class="question-block">
+                <p>{{ loop.index }}. {{ question.question }}</p>
+                <ul>
+                    {% for choice, answer in question.choices.items() %}
+                    <li>
+                        <label>
+                            <input type="radio" name="question-{{ loop.parent.index }}" value="{{ choice }}">
+                            {{ choice }}: {{ answer }}
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const data = new FormData(form);
+            const resultDiv = document.getElementById('result');
+            let score = 0;
+            let total = {{ quiz_data.questions|length }};
+            {% for question in quiz_data.questions %}
+            const correctAnswer = "{{ question.correct }}";
+            const userAnswer = data.get("question-{{ loop.index }}");
+            if (userAnswer === correctAnswer) {
+                score++;
+            }
+            {% endfor %}
+            resultDiv.innerHTML = `<p>Your score is ${score}/${total}</p>`;
+        });
+    </script>
+</body>
+</html>

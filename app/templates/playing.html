@@ -32,6 +32,15 @@
             speakingSymbol.style.display = 'none';
             window.location.href = '{{ url_for('index') }}';
         }
+
+        function redirectToQuiz() {
+            window.location.href = '{{ url_for('quiz', station_name=station_name) }}';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('audio');
+            audio.addEventListener('ended', redirectToQuiz);
+        });
     </script>
 </head>
 <body>
