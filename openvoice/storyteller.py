@@ -4,10 +4,41 @@ from openvoice import se_extractor
 from melo.api import TTS
 
 # Paths and device setup
-
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
-output_dir = 'train_stories'
-os.makedirs(output_dir, exist_ok=True)
+
+# Function to create the necessary directories
+def create_output_directory(station_name):
+    output_dir = os.path.join('train_stories', station_name)
+    os.makedirs(output_dir, exist_ok=True)
+    return output_dir
+
+# Function to convert text to speech and save the files
+def generate_story_for_station(station_name, texts, speed=1.0):
+    output_dir = create_output_directory(station_name)
+    
+    # Mapping for filenames
+    filenames = {
+        'EN_NEWEST': 'english.mp3',
+        'ES': 'spanish.mp3'
+    }
+
+    # Process each language
+    for language, text in texts.items():
+        model = TTS(language=language, device=device)
+        speaker_ids = model.hps.data.spk2id
+        
+        for speaker_key in speaker_ids.keys():
+            speaker_id = speaker_ids[speaker_key]
+            speaker_key = speaker_key.lower().replace('_', '-')
+            
+            model.tts_to_file(text, speaker_id, filenames[language], speed=speed)
+            
+            # Save the output file in the specified directory
+            save_path = os.path.join(output_dir, filenames[language])
+            os.rename(filenames[language], save_path)
+            
+            # Only need one speaker per language, break after first
+            break
 
 # Texts to be converted to speech
 texts = {
@@ -15,31 +46,6 @@ texts = {
     'ES': '''Hola buenos días, ¿cómo estás? Espero que estés bien. Hoy vamos a hablar sobre la importancia de la educación en la vida de las personas. La educación es un pilar fundamental en el desarrollo de las personas, ya que nos permite adquirir conocimientos, habilidades y valores que nos ayudan a crecer y a ser mejores seres humanos.'''
 }
 
-# Speed is adjustable
-speed = 1.0
-
-# Mapping for filenames
-filenames = {
-    'EN_NEWEST': 'english.mp3',
-    'ES': 'spanish.mp3'
-}
-
-# Process each language
-for language, text in texts.items():
-    model = TTS(language=language, device=device)
-    speaker_ids = model.hps.data.spk2id
-    print(speaker_ids)
-    
-    for speaker_key in speaker_ids.keys():
-        speaker_id = speaker_ids[speaker_key]
-        speaker_key = speaker_key.lower().replace('_', '-')
-        
-        #source_se = torch.load(f'checkpoints_v2/base_speakers/ses/{speaker_key}.pth', map_location=device)
-        model.tts_to_file(text, speaker_id, filenames[language], speed=speed)
-        
-        # Save the output file in the specified directory
-        save_path = os.path.join(output_dir, filenames[language])
-        os.rename(filenames[language], save_path)
-        
-        # Only need one speaker per language, break after first
-        break
+# Example usage
+station_name = 'plaça catalunya'
+generate_story_for_station(station_name, texts)
