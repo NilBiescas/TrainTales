@@ -22,10 +22,8 @@
                 zoom: 12
             });
 
-            // Get markers data from Flask template
             const markers = {{ markers | tojson }};
 
-            // Add markers to the map
             markers.forEach(marker => {
                 new google.maps.Marker({
                     position: { lat: marker.lat, lng: marker.lng },
