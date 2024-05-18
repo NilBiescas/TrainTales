@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-
+import json
+import random
+import os
 app = Flask(__name__)
 
 stations = {'Barcelona Plaça Catalunya': ['english.mp3', 'pl_cat.jpg'],
@@ -51,7 +53,9 @@ s2_stations = [
 ]
 
 def get_station():
-    return "Provença"
+    # Random station
+    return random.choice(list(stations.keys()))
+    #return "Provença"
 
 @app.route('/')
 def index():
