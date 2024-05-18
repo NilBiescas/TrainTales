@@ -13,19 +13,25 @@ def create_output_directory(station_name):
     return output_dir
 
 # Function to convert text to speech and save the files
-def generate_story_for_station(station_name, speed=1.0):
+def generate_story_for_station(station_name, previous_description, speed=1.0, underground=False):
     output_dir = create_output_directory(station_name)
     
     # Languages and their corresponding filenames
     languages = {
         'EN': 'english.mp3',
-        'ES': 'spanish.mp3'
+        #'ES': 'spanish.mp3'
     }
 
     # Process each language
     for lang_code, filename in languages.items():
         language = "English" if lang_code == 'EN' else "Spanish"
-        text = get_model_response(station_name, language=language)
+        text = get_model_response(station_name, language=language, previous_description=previous_description, underground=underground)
+        
+        # Save the text to a file
+        text_filename = f"{language.lower()}.txt"
+        text_save_path = os.path.join(output_dir, text_filename)
+        with open(text_save_path, 'w', encoding='utf-8') as text_file:
+            text_file.write(text)
         
         model = TTS(language=lang_code, device=device)
         speaker_ids = model.hps.data.spk2id
@@ -36,16 +42,23 @@ def generate_story_for_station(station_name, speed=1.0):
             
             model.tts_to_file(text, speaker_id, filename, speed=speed)
             
-            # Save the output file in the specified directory
-            save_path = os.path.join(output_dir, filename)
-            os.rename(filename, save_path)
+            # Save the audio file in the specified directory
+            audio_save_path = os.path.join(output_dir, filename)
+            
+            #if an audio with the same name already exists, overwrite it
+            if os.path.exists(audio_save_path):
+                os.remove(audio_save_path)
+            
+            #rename the file to the correct name
+            os.rename(filename, audio_save_path)
+            
             
             # Only need one speaker per language, break after first
             break
+    
+    return text  # Return the generated text to use as the previous description for the next station
 
 # Example usage
-station_names = ["Vallbona", "Universitat Autónoma", "Sant Cugat"]
-
 s2_stations = [
     "Barcelona Plaça Catalunya",
     "Provença",
@@ -72,5 +85,25 @@ s2_stations = [
     "Sabadell Nord",
     "Sabadell Parc del Nord"
 ]
+
+underground_stations = [
+    "Barcelona Plaça Catalunya",
+    "Provença",
+    "Gràcia",
+    "Sant Gervasi",
+    "Muntaner",
+    "La Bonanova",
+    "Les Tres Torres",
+    "Sarrià",
+    "Can Feu | Gràcia",
+    "Sabadell Plaça Major",
+    "La Creu Alta",
+    "Sabadell Nord",
+    "Sabadell Parc del Nord"
+]
+    
+
+previous_description = ""
 for station_name in s2_stations:
-    generate_story_for_station(station_name, speed=1.1)
+    underground = True if station_name in underground_stations else False
+    previous_description = generate_story_for_station(station_name, previous_description, speed=1.1, underground = underground)
