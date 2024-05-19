@@ -114,6 +114,11 @@
             "lat": 41.571291,
             "long": 2.089499,
             "name": "Sabadell Parc del Nord"
+        },
+        "LP": {
+            "lat": 41.42740264,
+            "long": 2.0916176,
+            "name": "Les Planes"
         }
     }
 }
