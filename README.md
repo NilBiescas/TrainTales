@@ -1,6 +1,6 @@
 # 🚂 TRAIN TALES: A NEW WAY FOR KIDS TO DISCOVER THE WORLD FROM THE WAGON 🌍
 
-Welcome to UABHACK! This repository contains the source code for the UAB Hackathon project, "Train Tales." Our goal is to create an engaging app that generates speech-based stories and provides relevant information about visited places for kids traveling on FGC trains.
+Welcome to TrainTales! This repository contains the source code for the UAB Hackathon project, "Train Tales." Our goal is to create an engaging app that generates speech-based stories and provides relevant information about visited places for kids traveling on FGC trains.
 
 ## 🌟 Features
 
