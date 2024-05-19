@@ -39,8 +39,8 @@ def index():
     
     session['next_station_index'] = None
     session['direction'] = None
-    station_name = 'Provença'
-    audio_file, image_file = stations[station_name]
+    audio_file, image_file = '', ''
+    station_name = ''
     return render_template('home.html', station_name=station_name, audio_file=audio_file, image_file=image_file)
 
 @app.route('/location', methods=['POST'])
