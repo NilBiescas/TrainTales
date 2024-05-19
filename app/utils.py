@@ -2,7 +2,7 @@ import requests
 import math
 import json
 
-stations_index = ['PC', 'PR', 'GR', 'SG', 'MN', 'BN', 'TT', 'SR', 'PF', 'VD', 'LP', 'LF', 'VL', 'SC', 'VO', 'SJ', 'BT', 'UN', 'SQ', 'CF', 'PJ', 'CA', 'NO', 'PN']
+stations_index = ['PC', 'PR', 'GR', 'SG', 'MN', 'BN', 'TT', 'SR', 'PF', 'VL', 'LP', 'LF', 'VD', 'SC', 'VO', 'SJ', 'BT', 'UN', 'SQ', 'CF', 'PJ', 'CT', 'NO', 'PN']
 
 # Define the endpoint URL for the FGC stations dataset
 endpoint_url = 'https://dadesobertes.fgc.cat/api/records/1.0/search/'
