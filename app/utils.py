@@ -8,13 +8,13 @@ stations_index = ['PC', 'PR', 'GR', 'SG', 'MN', 'BN', 'TT', 'SR', 'PF', 'VL', 'L
 endpoint_url = 'https://dadesobertes.fgc.cat/api/records/1.0/search/'
 
 
-with open('static\idx2station.json', 'r', encoding='utf-8') as file:
+with open('static/idx2station.json', 'r', encoding='utf-8') as file:
     idx2station = json.load(file)
     
-with open('static\stations_s2.json', 'r', encoding='utf-8') as file:
+with open('static/stations_s2.json', 'r', encoding='utf-8') as file:
     lat_long_stations = json.load(file)
 
-path_json = 'static\codis_info_lineas.json'
+path_json = 'static/codis_info_lineas.json'
 with open(path_json, 'r', encoding='utf-8') as file:
     codes2info_lines = json.load(file)
 

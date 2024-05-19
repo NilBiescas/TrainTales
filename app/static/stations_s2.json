@@ -95,6 +95,16 @@
             "long": 2.100463866,
             "name": "Can Feu | Gràcia"
         },
+        "PJ": {
+            "lat": 41.547519,
+            "long": 2.103258,
+            "name": "Sabadell Plaça Major"
+        },
+        "CA": {
+            "lat": 41.554571,
+            "long": 2.102618,
+            "name": "La Creu Alta"
+        },
         "NO": {
             "lat": 41.561225,
             "long": 2.096657,

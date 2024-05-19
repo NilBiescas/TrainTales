@@ -42,7 +42,6 @@
                 .bindPopup('Train')
                 .openPopup();
 
-
             // Fetch station data from JSON file
             fetch('/static/stations_s2.json')
                 .then(response => response.json())
@@ -75,6 +74,7 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                updateLocationInfo(data);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -105,27 +105,12 @@
             .then(data => {
                 console.log('Updated location data:', data);
                 updateIconPosition(data.latitude, data.longitude);
+                updateLocationInfo(data);  // Update image and audio
             })
             .catch((error) => {
                 console.error('Error fetching updated location:', error);
             });
         }
-        fetch('/static/stations_s2.json')
-        .then(response => response.json())
-        .then(stationData => {
-            // Add markers for each station in the JSON data
-            for (const station in stationData.stations) {
-                if (stationData.stations.hasOwnProperty(station)) {
-                    const stationInfo = stationData.stations[station];
-                    L.marker([stationInfo.lat, stationInfo.long]).addTo(map)
-                        .bindPopup(`${station} (Line: ${stationInfo.line})`)
-                        .openPopup();
-                }
-            }
-        })
-        .catch((error) => {
-            console.error('Error fetching station data:', error);
-        });
 
         function updateIconPosition(latitude, longitude) {
             if (iconMarker) {
@@ -149,7 +134,6 @@
                     break;
             }
         }
-
 
         function startAudio() {
             var audio = document.getElementById('audio');
@@ -177,6 +161,12 @@
             document.getElementById('play-button').style.display = 'block';
             document.getElementById('pause-button').style.display = 'none';
             document.getElementById('stop-button').style.display = 'none';
+        }
+
+        function updateLocationInfo(data) {
+            document.querySelector('.location-info').textContent = 'You are currently in: ' + data.next_station_name;
+            document.querySelector('.location-image').src = '{{ url_for('static', filename='stations_img/') }}' + data.image_file;
+            document.getElementById('audio').src = '{{ url_for('static', filename='train_stories/') }}' + data.next_station_name + '/english.mp3';
         }
     </script>
 </head>
