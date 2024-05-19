@@ -17,6 +17,9 @@
         });
 
         var iconMarker;
+        var quizData = null; // Variable to hold quiz data
+        var currentQuestionIndex = 0;
+        var score = 0;
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -30,10 +33,8 @@
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
 
-            // Initialize the map
             const map = L.map('map').setView([latitude, longitude], 13);
 
-            // Add a tile layer to the map
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
@@ -42,11 +43,9 @@
                 .bindPopup('Train')
                 .openPopup();
 
-            // Fetch station data from JSON file
             fetch('/static/stations_s2.json')
                 .then(response => response.json())
                 .then(stationData => {
-                    // Add markers for each station in the JSON data
                     for (const station in stationData.stations) {
                         if (stationData.stations.hasOwnProperty(station)) {
                             const stationInfo = stationData.stations[station];
@@ -60,7 +59,6 @@
                     console.error('Error fetching station data:', error);
                 });
 
-            // Send location to the server
             fetch('/location', {
                 method: 'POST',
                 headers: {
@@ -74,14 +72,14 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                quizData = data.quiz_data; // Store quiz data
                 updateLocationInfo(data);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
 
-            // Testing: Move the icon a little bit every second
-            setInterval(fetchUpdatedLocation, 30000);
+            setInterval(fetchUpdatedLocation, 10000);
         }
 
         function fetchUpdatedLocation() {
@@ -105,7 +103,7 @@
             .then(data => {
                 console.log('Updated location data:', data);
                 updateIconPosition(data.latitude, data.longitude);
-                updateLocationInfo(data);  // Update image and audio
+                updateLocationInfo(data); 
             })
             .catch((error) => {
                 console.error('Error fetching updated location:', error);
@@ -141,6 +139,9 @@
             document.getElementById('play-button').style.display = 'none';
             document.getElementById('pause-button').style.display = 'block';
             document.getElementById('stop-button').style.display = 'block';
+            
+            // Show quiz immediately when audio starts
+            showQuiz();
         }
 
         function pauseAudio() {
@@ -168,15 +169,99 @@
             document.querySelector('.location-image').src = '{{ url_for('static', filename='stations_img/') }}' + data.image_file;
             document.getElementById('audio').src = '{{ url_for('static', filename='train_stories/') }}' + data.next_station_name + '/english.mp3';
         }
+
+        function showQuiz() {
+            document.getElementById('quiz-modal').style.display = 'block';
+            loadQuestion(0); // Load the first question
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').style.display = 'none';
+            window.location.href = '{{ url_for('index') }}';
+        }
+
+        function loadQuestion(index) {
+            if (!quizData || !quizData.questions || quizData.questions.length === 0) {
+                console.error("No questions available.");
+                document.getElementById('quiz-content').innerHTML = '<p>No questions available.</p>';
+                return;
+            }
+
+            const questionData = quizData.questions[index];
+            const questionHtml = `
+                <div class="question-card">
+                    <p class="question-text">${questionData.question}</p>
+                    <div class="options">
+                        ${Object.entries(questionData.choices).map(([key, choice]) => `
+                            <label class="option-label">
+                                <input type="radio" name="question" value="${key}">
+                                ${key}: ${choice}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            document.getElementById('quiz-content').innerHTML = questionHtml;
+        }
+
+        function nextQuestion() {
+            const selectedOption = document.querySelector('input[name="question"]:checked');
+            if (!selectedOption) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            const correctAnswer = quizData.questions[currentQuestionIndex].correct;
+            if (selectedOption.value === correctAnswer) {
+                score++;
+                selectedOption.parentElement.style.backgroundColor = '#d4edda';
+            } else {
+                selectedOption.parentElement.style.backgroundColor = '#f8d7da';
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.questions.length) {
+                setTimeout(() => loadQuestion(currentQuestionIndex), 1000);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="result-card">
+                    <p>Your score is ${score}/${quizData.questions.length}</p>
+                </div>
+            `;
+            document.getElementById('next-button').textContent = 'Close Quiz';
+            document.getElementById('next-button').onclick = closeQuiz;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            getLocation();
+        });
     </script>
 </head>
-<body onload="getLocation()">
+<body>
     <div id="map"></div>
     <div class="container">
         <div class="top-right-corner">
             <div class="location-info">You are currently in: {{ station_name }}</div>
             <img class="location-image" src="{{ url_for('static', filename='stations_img/' + image_file) }}" alt="Current Location">
         </div>
+
+        <!-- Quiz Modal -->
+        <div id="quiz-modal" class="modal">
+            <div class="modal-content">
+                <h1>Quiz for {{ station_name }}</h1>
+                <div id="quiz-content">
+                    <!-- Questions will be injected here by JavaScript -->
+                </div>
+                <button id="next-button" onclick="nextQuestion()">Next</button>
+                <div id="result"></div>
+            </div>
+        </div>
+
         <audio id="audio">
             <source src="{{ url_for('static', filename='train_stories/' + station_name + '/english.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -185,17 +270,6 @@
             <div id="play-button" class="play-button" onclick="startAudio()"></div>
             <div id="pause-button" class="pause-button" onclick="pauseAudio()"></div>
             <div id="stop-button" class="stop-button" onclick="stopAudio()"></div>
-        </div>
-    </div>
-    <!-- Quiz Modal -->
-    <div id="quiz-modal" class="modal">
-        <div class="modal-content">
-            <h1>Quiz for {{ station_name }}</h1>
-            <div id="quiz-content">
-                <!-- Questions will be injected here by JavaScript -->
-            </div>
-            <button id="next-button" onclick="nextQuestion()">Next</button>
-            <div id="result"></div>
         </div>
     </div>
 </body>

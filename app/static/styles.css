@@ -11,7 +11,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 0;
 }
 
 .container {
@@ -19,7 +19,6 @@ body {
     height: 100vh;
     width: 100%;
     z-index: 2;
-    pointer-events: none;
 }
 
 .top-right-corner {
@@ -63,7 +62,7 @@ body {
 .play-button, .pause-button, .stop-button {
     width: 60px;
     height: 60px;
-    border-radius: 10px; /* Same border radius as the location image */
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,8 +71,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid #333; /* Same border as the location image */
-    background-color: rgb(255, 255, 255); /* Same background color as the location info */
+    border: 2px solid #333;
+    background-color: rgb(255, 255, 255);
 }
 
 #play-button {
@@ -81,12 +80,12 @@ body {
 }
 
 #pause-button {
-    background-image:  url('icons/pause.jpg');
+    background-image: url('icons/pause.jpg');
     display: none;
 }
 
 #stop-button {
-    background-image:  url('icons/stop.png');
+    background-image: url('icons/stop.png');
     display: none;
 }
 
@@ -96,24 +95,28 @@ body {
 
 /* Modal styles for the quiz */
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 3; 
+    display: none;
+    position: fixed;
+    z-index: 3;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    max-width: 600px; /* Added to limit the width */
+    z-index: 4;
+    pointer-events: auto;
 }
 
 .question-card {
