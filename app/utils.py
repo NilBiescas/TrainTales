@@ -2,7 +2,7 @@ import requests
 import math
 import json
 
-stations_index = ['PC', 'PR', 'GR', 'SG', 'MN', 'BN', 'TT', 'SR', 'PF', 'VL', 'LP', 'LF', 'VD', 'SC', 'VO', 'SJ', 'BT', 'UN', 'SQ', 'CF', 'PJ', 'CT', 'NO', 'PN']
+stations_index = ['PC', 'PR', 'GR', 'SG', 'MN', 'BN', 'TT', 'SR', 'PF', 'VD', 'LP', 'LF', 'VL', 'SC', 'VO', 'SJ', 'BT', 'UN', 'SQ', 'CF', 'PJ', 'CA', 'NO', 'PN']
 
 # Define the endpoint URL for the FGC stations dataset
 endpoint_url = 'https://dadesobertes.fgc.cat/api/records/1.0/search/'
@@ -117,7 +117,8 @@ def in_station(index_station, our_lat, our_lon):
 
 def update_next_station_index(next_station_index, direction, latitude, longitude):
     if in_station(next_station_index, latitude, longitude):
-        next_station_index += direction
+        index = stations_index.index(next_station_index)
+        next_station_index = stations_index[index + direction]
     return next_station_index
     
 def init_station(init_lat, init_lon):
